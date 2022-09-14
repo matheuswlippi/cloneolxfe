@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components'
 
 export const HeaderArea = styled.div`
     height: 60px;
@@ -43,7 +43,7 @@ export const HeaderArea = styled.div`
             list-style: none;
         }
 
-        ul{
+        ul {
             display: flex;
             align-items: center;
             height: 40px;
@@ -51,18 +51,18 @@ export const HeaderArea = styled.div`
 
         li {
             margin-left: 20px;
-            margin-right: 20px
+            margin-right: 20px;
 
             a {
                 color: #000;
                 font-size: 14px;
 
-                &:hover{
+                &:hover {
                     color: #999;
                 }
 
                 &.button {
-                    background-color: #ff8100;
+                    background-color: #FF8100;
                     border-radius: 4px;
                     color: #FFF;
                     padding: 5px 10px;
@@ -74,4 +74,6 @@ export const HeaderArea = styled.div`
             }
         }
     }
+
+   
 `
