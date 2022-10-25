@@ -1,22 +1,22 @@
-import React, { useState, useEffect } from "react";
-import { PageArea} from './styled';
-import { PageContainer, 
+import React, { useState, useEffect } from 'react';
+import { PageArea } from './styled';
+import { 
+    PageContainer, 
     PageTitle, 
     ErrorMessage } from '../../components/MainComponents';
 import useApi from '../../helpers/OlxAPI';
-import { doLogin } from "../../helpers/AuthHandler";
-
+import { doLogin } from '../../helpers/AuthHandler';
 
 const Page = () => {
-    const api = useApi()
+    const api = useApi();
 
     const [name, setName] = useState('');
     const [stateLoc, setStateLoc] = useState('');
     const [stateList, setStateList] = useState([]);
-    const [email, setEmail] = useState('')
-    const [password, setPassword] = useState('')
-    const [confirmPassword, setConfirmPassword] = useState();
-    const [disable, setDisable] = useState(false)
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [confirmPassword, setConfirmPassword] = useState('');
+    const [disabled, setDisabled] = useState(false);
     const [error, setError] = useState('');
 
     useEffect(() => {
@@ -28,12 +28,12 @@ const Page = () => {
     }, []);
 
     const handleSubmit = async (e) => {
-        e.preventDefault()
-        setDisable(true);
+        e.preventDefault();
+        setDisabled(true);
         setError('');
-        if (password !== confirmPassword){
+        if (password !== confirmPassword) {
             setError("Senhas não batem");
-            setDisable(false);
+            setDisabled(false);
             return;
         }
         const json = await api.register(
@@ -41,15 +41,15 @@ const Page = () => {
             stateLoc,
             email,
             password
-        )
+        );
         if (json.error) {
             setError(json.error);
-        }else {
+        } else {
             doLogin(json.token);
             window.location.href = '/';
         }
-        setDisable(false);
-    } 
+        setDisabled(false);
+    }
 
     return (
         <PageContainer>
@@ -61,14 +61,14 @@ const Page = () => {
                     </ErrorMessage>
                 }
                 <form onSubmit={handleSubmit}>
-                    <label className="area">
+                <label className="area">
                         <div className="area--title">
-                            Nome Completo
+                            Noma Completo
                         </div>
                         <div className="area--input">
                             <input 
                                 type="text" 
-                                disabled={disable}
+                                disabled={disabled} 
                                 value={name}
                                 onChange={e => setName(e.target.value)}
                                 required
@@ -81,7 +81,7 @@ const Page = () => {
                         </div>
                         <div className="area--input">
                             <select 
-                                disabled={disable}
+                                disabled={disabled} 
                                 value={stateLoc}
                                 onChange={e => setStateLoc(e.target.value)}
                                 required
@@ -105,7 +105,7 @@ const Page = () => {
                         <div className="area--input">
                             <input 
                                 type="email" 
-                                disabled={disable}
+                                disabled={disabled} 
                                 value={email}
                                 onChange={e => setEmail(e.target.value)}
                                 required
@@ -119,7 +119,7 @@ const Page = () => {
                         <div className="area--input">
                             <input 
                                 type="password" 
-                                disabled={disable}
+                                disabled={disabled} 
                                 value={password}
                                 onChange={e => setPassword(e.target.value)}
                                 required
@@ -133,7 +133,7 @@ const Page = () => {
                         <div className="area--input">
                             <input 
                                 type="password" 
-                                disabled={disable}
+                                disabled={disabled} 
                                 value={confirmPassword}
                                 onChange={e => setConfirmPassword(e.target.value)}
                                 required
@@ -142,8 +142,8 @@ const Page = () => {
                     </label>
                     <label className="area">
                         <div className="area--title"></div>
-                        <div className="area--input" disabled={disable} >
-                            <button >Fazer Cadastro</button>
+                        <div className="area--input">
+                            <button disabled={disabled} >Fazer Cadastro</button>
                         </div>
                     </label>
                 </form>
@@ -152,4 +152,4 @@ const Page = () => {
     )
 }
 
-export default Page
+export default Page;

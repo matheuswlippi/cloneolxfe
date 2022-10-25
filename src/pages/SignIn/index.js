@@ -1,34 +1,34 @@
-import React, { useState } from "react";
-import { PageArea} from './styled';
-import { PageContainer, 
+import React, { useState } from 'react';
+import { PageArea } from './styled';
+import { 
+    PageContainer, 
     PageTitle, 
     ErrorMessage } from '../../components/MainComponents';
 import useApi from '../../helpers/OlxAPI';
-import { doLogin } from "../../helpers/AuthHandler";
-
+import { doLogin } from '../../helpers/AuthHandler';
 
 const Page = () => {
-    const api = useApi()
+    const api = useApi();
 
-    const [email, setEmail] = useState('')
-    const [password, setPassword] = useState('')
-    const [rememberPassword, setRememberPassword] = useState(false)
-    const [disable, setDisable] = useState(false)
-    const [error, setError] = useState('')
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [rememberPassword, setRememberPassword] = useState(false);
+    const [disabled, setDisabled] = useState(false);
+    const [error, setError] = useState('');
 
     const handleSubmit = async (e) => {
-        e.preventDefault()
-        setDisable(true);
+        e.preventDefault();
+        setDisabled(true);
         setError('');
         const json = await api.login(email, password)
         if (json.error) {
             setError(json.error)
-        }else {
+        } else {
             doLogin(json.token, rememberPassword)
             window.location.href = '/'
         }
-        setDisable(false);
-    } 
+        setDisabled(false);
+    }
 
     return (
         <PageContainer>
@@ -47,7 +47,7 @@ const Page = () => {
                         <div className="area--input">
                             <input 
                                 type="email" 
-                                disabled={disable}
+                                disabled={disabled} 
                                 value={email}
                                 onChange={e => setEmail(e.target.value)}
                                 required
@@ -61,7 +61,7 @@ const Page = () => {
                         <div className="area--input">
                             <input 
                                 type="password" 
-                                disabled={disable}
+                                disabled={disabled} 
                                 value={password}
                                 onChange={e => setPassword(e.target.value)}
                                 required
@@ -72,19 +72,19 @@ const Page = () => {
                         <div className="area--title">
                             Lembrar Senha
                         </div>
-                        <div className="area--input">
+                        <div className="area-input">
                             <input 
                                 type="checkbox" 
-                                disabled={disable}
-                                checked= {rememberPassword}
-                                onChange= {() => setRememberPassword(!rememberPassword)}
+                                disabled={disabled} 
+                                checked={rememberPassword}
+                                onChange={() => setRememberPassword(!rememberPassword)}
                             />
                         </div>
                     </label>
                     <label className="area">
                         <div className="area--title"></div>
-                        <div className="area--input" disabled={disable} >
-                            <button >Fazer Login</button>
+                        <div className="area--input">
+                            <button disabled={disabled} >Fazer Login</button>
                         </div>
                     </label>
                 </form>

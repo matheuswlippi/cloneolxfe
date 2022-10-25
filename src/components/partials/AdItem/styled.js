@@ -3,7 +3,7 @@ import styled from 'styled-components'
 export const Item = styled.div`
     a {
         display: block;
-        border: 1px solid #ccc;
+        border: ipx solid #ccc;
         margin: 10px;
         text-decoration: none;
         padding: 10px;
@@ -24,7 +24,6 @@ export const Item = styled.div`
 
         .itemName {
             font-weight: bold;
-            
         }
     }
 `

@@ -1,10 +1,9 @@
-# Projeto Clone OLX - FRONT-END
+# Projeto Clone OLX - Front-End
 
-## Desenvolvimento em React.js - Node 16.14.2v
+## Desenvolvimento em React.js - Node 16.14.2
 
-### Modulos utilizados: Redux, Router, js-Cookie, Styled-Components
+### Modulos utilizados: Redux, Router, js-Cookie, Styled-Components.
 
-Treinamento efetuado na disciplina
-*Desenvolvimento WEB II* do Curso de _Analise e Desenvolvimento de Sistemas_ do [IFSP](https://www.ifspcaraguatatuba.edu.br/)
+Treinamento efetuado na disciplina _Desenvolvimento WEB II_ do curso de _Analise e Desenvolvimento de Sistemas_ do [IFSP](https://ifspcaraguatatuba.edu.br/)
 
-_autor: Matheus Wesley Lippi_
+_autor: Denny Paulista Azevedo Filho_

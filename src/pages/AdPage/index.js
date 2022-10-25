@@ -1,17 +1,29 @@
-import React, { useState, useEffect } from 'react';
-import { PageArea, Fake, OthersArea} from './styled';
-import { useParams } from 'react-router-dom';
+import 
+React, 
+{ 
+    useState, 
+    useEffect 
+} from 'react';
+import 
+{ 
+    PageArea,
+    Fake,
+    OthersArea,
+    BreadChump
+} from './styled';
+import { 
+    useParams,
+    Link
+} from 'react-router-dom';
 import { Slide } from 'react-slideshow-image';
-import 'react-slideshow-image/dist/styles.css'; 
+import 'react-slideshow-image/dist/styles.css';
 import { PageContainer } from '../../components/MainComponents';
 import AdItem from '../../components/partials/AdItem';
 import useApi from '../../helpers/OlxAPI';
 
-
-
 const Page = () => {
     const api = useApi();
-    const { id } = useParams(); 
+    const { id } = useParams();
 
     const [loading, setLoading] = useState(true);
     const [adInfo, setAdInfo] = useState({});
@@ -28,26 +40,50 @@ const Page = () => {
     const formatDate = (date) => {
         let cDate = new Date();
         let months = [
-            'janeiro', 	
-			'fevereiro',
-			'março',
-			'abril', 
-			'maio', 
-			'junho', 
-			'julho', 
-			'agosto', 
-			'setembro', 
-			'outubro', 
-			'novembro', 
-			'dezembro'
+            'janeiro',
+            'fevereiro',
+            'março',
+            'abril',
+            'maio',
+            'junho',
+            'julho',
+            'agosto',
+            'setembro',
+            'outubro',
+            'novembro',
+            'dezembro'
         ];
         let cDay = cDate.getDate();
-		let cMonth = cDate.getMonth();
-		let cYear = cDate.getFullYear();
-		return `${cDay} de ${months[cMonth]} de ${cYear}`;
+        let cMonth = cDate.getMonth();
+        let cYear = cDate.getFullYear();
+        return `${cDay} de ${months[cMonth]} de ${cYear}`;
     }
+
     return (
         <PageContainer>
+            {adInfo.category &&
+                <BreadChump>
+                    Você está em:
+                    <Link
+                        to="/"
+                    >
+                        Home
+                    </Link>
+                    /
+                    <Link
+                        to={`/ads?state=${adInfo.stateName}`}
+                    >
+                        {adInfo.stateName}
+                    </Link>
+                    /
+                    <Link
+                        to={`/ads?state=${adInfo.stateName}&cat=${adInfo.category.slug}`}
+                    >
+                        {adInfo.category.name}
+                    </Link>
+                    / {adInfo.title}
+                </BreadChump>
+            }
             <PageArea>
                 <div className="leftSide">
                     <div className="box">
@@ -57,7 +93,7 @@ const Page = () => {
                             }
                             {adInfo.images &&
                                 <Slide>
-                                    {adInfo.images.map((img, k) => 
+                                    {adInfo.images.map((img, k) =>
                                         <div key={k} className="each-slide">
                                             <img src={img} alt="" />
                                         </div>
@@ -67,22 +103,18 @@ const Page = () => {
                         </div>
                         <div className="adInfo">
                             <div className="adName">
-                                {loading && 
-                                    <Fake height={20} />
-                                }
-                                {adInfo.title && 
+                                {loading && <Fake height={20} />}
+                                {adInfo.title &&
                                     <h2>{adInfo.title}</h2>
                                 }
-                                {adInfo.dateCreated && 
+                                {adInfo.dateCreated &&
                                     <small>
                                         Criado em: {formatDate(adInfo.dateCreated)}
                                     </small>
                                 }
                             </div>
                             <div className="adDescription">
-                                {loading && 
-                                    <Fake height={100} />
-                                }
+                                {loading && <Fake height={100} />}
                                 {adInfo.description}
                                 <hr />
                                 {adInfo.views &&
@@ -95,11 +127,9 @@ const Page = () => {
                     </div>
                 </div>
                 <div className="rightSide">
-                    <div className="box box-padding">
-                        {loading && 
-                           <Fake height={20} />
-                        }
-                        {adInfo.priceNegotiabled &&
+                    <div className="box box--padding">
+                        {loading && <Fake height={20} />}
+                        {adInfo.priceNegotiabled && 
                             "Preço Negociável"
                         }
                         {!adInfo.priceNegotiabled && adInfo.price &&
@@ -108,9 +138,7 @@ const Page = () => {
                             </div>
                         }
                     </div>
-                    {loading && 
-                        <Fake height={50} />
-                    }
+                    {loading && <Fake height={50} />}
                     {adInfo.userInfo && 
                         <>
                             <a
@@ -120,10 +148,10 @@ const Page = () => {
                             >
                                 Fale com o vendedor
                             </a>
-                            <div className=" createBy box box-padding">
+                            <div className=" createBy box box--padding">
                                 <strong>{adInfo.userInfo.name}</strong>
                                 <small>Email: {adInfo.userInfo.email}</small>
-                                <small>Estado: {adInfo.userInfo.StateName}</small>
+                                <small>Estado: {adInfo.userInfo.stateName}</small>
                             </div>
                         </>
                     }
@@ -131,14 +159,14 @@ const Page = () => {
                 </div>
             </PageArea>
             <OthersArea>
-                {adInfo.Others &&
+                {adInfo.others &&
                     <>
-                        <h2>Outras ofertas do Vendedor</h2>
+                        <h2>Outras ofertas do vendedor</h2>
                         <div className="list">
-                            {adInfo.Others.map((i,k) => 
+                            {adInfo.others.map((i,k) => 
                                 <AdItem key={k} data={i} />
-                            )}
-                        </div>
+                            )}    
+                        </div>    
                     </>
                 }
             </OthersArea>
@@ -146,4 +174,4 @@ const Page = () => {
     )
 }
 
-export default Page
+export default Page;

@@ -1,5 +1,4 @@
-import styled from "styled-components";
-
+import styled from 'styled-components'
 
 export const PageArea = styled.div`
     h2 {
@@ -25,7 +24,7 @@ export const PageArea = styled.div`
 `
 
 export const SearchArea = styled.div`
-    background-color: #DDD;
+    background-color: #ddd;
     border-bottom: 1px solid #ccc;
     padding: 20px 0;
 
@@ -33,7 +32,7 @@ export const SearchArea = styled.div`
         background-color: #9bb83c;
         padding: 20px 15px;
         border-radius: 5px;
-        box-shadow: 1px 1px 1px 0.3px rgba(0,0,0, 0.2);
+        box-shadow: 1px 1px 1px 0.3px rgba(0, 0, 0, 0.2);
         display: flex;
 
         form {
@@ -59,7 +58,7 @@ export const SearchArea = styled.div`
                 width: 100px;
             }
 
-            button{
+            button {
                 background-color: #49aeef;
                 font-size: 15px;
                 border: 0;
@@ -69,7 +68,7 @@ export const SearchArea = styled.div`
                 padding: 0 20px;
                 cursor: pointer;
 
-                &:hover{
+                &:hover {
                     background-color: #429fdb;
                 }
             }
@@ -101,4 +100,5 @@ export const SearchArea = styled.div`
             }
         }
     }
+
 `

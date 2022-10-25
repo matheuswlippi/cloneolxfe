@@ -1,19 +1,19 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Item } from './styled';
+import { Item} from './styled';
 
 export default (props) => {
     let price = '';
-    
-    if(props.data.priceNegotiable){
+
+    if (props.data.priceNegotiable) {
         price = 'Preço Negociável';
     } else {
-        price = `RS ${props.data.price}`;
+        price = `R$ ${props.data.price}`;
     }
-
+    
     return (
         <Item className="aditem">
-            <Link to={`/ads/${props.data.id}`}>
+            <Link to={`/ad/${props.data.id}`} >
                 <div className="itemImage">
                     <img src={props.data.image} alt="" />
                 </div>
@@ -23,4 +23,3 @@ export default (props) => {
         </Item>
     );
 }
-

@@ -1,5 +1,4 @@
-import styled from "styled-components";
-
+import styled from 'styled-components'
 
 export const PageArea = styled.div`
     form {
@@ -41,20 +40,20 @@ export const PageArea = styled.div`
                 }
 
                 button {
-                    background-color: #0089ff;
+                    background-color: #0089FF;
                     border: 0;
                     outline: 0;
                     padding: 5px 10px;
                     border-radius: 4px;
-                    color: #fff;
+                    color: #FFF;
                     font-size: 15px;
                     cursor: pointer;
 
                     &:hover {
-                        background-color: #006fce;
+                        background-color: #006FCE;
                     }
                 }
             }
         }
     }
-`
+`  
