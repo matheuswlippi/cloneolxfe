@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 export const PageArea = styled.div`
-   display: flex;
+    display: flex;
     margin-top: 20px;
 
     .leftSide {
@@ -22,37 +22,37 @@ export const PageArea = styled.div`
             color: #000;
             padding: 10px;
         }
-    }
 
-    ul, li {
-        margin: 0;
-        padding: 0;
-        list-style: none;
-    }
-
-    .categoryItem {
-        display: flex;
-        align-items: center;
-        padding: 10px;
-        border-radius: 5px;
-        color: #000;
-        cursor: pointer;
-
-        img {
-            width: 25px;
-            height: 25px;
-            margin-right: 5px;
+        ul, li {
+            margin: 0;
+            padding: 0;
+            list-style: none;
         }
 
-        span {
-            font-size: 14px;
-        }
-    }
+        .categoryItem {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            border-radius: 5px;
+            color: #000;
+            cursor: pointer;
 
-    .categoryItem:hover,
-    .categoryItem.active {
-        background-color: #9bb83c;
-        color: #fff;
+            img {
+                width: 25px;
+                height: 25px;
+                margin-right: 5px;
+            }
+
+            span {
+                font-size: 14px;
+            }
+        }
+
+        .categoryItem:hover,
+        .categoryItem.active {
+            background-color: #9bb83c;
+            color: #fff;
+        }
     }
 
     .rightSide {
@@ -62,7 +62,7 @@ export const PageArea = styled.div`
             font-size: 18px;
         }
 
-        .listWarning {
+        .ListWarning {
             padding: 30px;
             text-align: center;
         }
@@ -89,7 +89,7 @@ export const PageArea = styled.div`
                     border: 1px solid #999;
                 }
 
-                &:active {
+                &.active {
                     background-color: #ccc;
                 }
             }
@@ -98,8 +98,8 @@ export const PageArea = styled.div`
         .list {
             display: flex;
             flex-wrap: wrap;
-            
-            .adItem {
+
+            .aditem {
                 width: 33%;
             }
         }
