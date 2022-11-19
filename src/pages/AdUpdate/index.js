@@ -1,23 +1,17 @@
-import 
-    React, 
-    { 
-        useState, 
-        useEffect 
-    } from 'react';
+import React, { useState, useEffect } from 'react';
 import MaskedInput from 'react-text-mask';
 import { createNumberMask } from 'text-mask-addons';
 import { PageArea } from './styled';
-import { 
-    PageContainer, 
-    PageTitle, 
-    ErrorMessage 
-} from '../../components/MainComponents';
+import { PageContainer, PageTitle, ErrorMessage } from '../../components/MainComponents';
 import useApi from '../../helpers/OlxAPI';
+import { useParams } from 'react-router-dom';
 
 const Page = () => {
     const api = useApi();
+    const { id } = useParams();
 
     const [title, setTitle] = useState('');
+    const [fileField, setFileField] = useState();
     const [category, setCategory] = useState('');
     const [categories, setCategories] = useState([]);
     const [price, setPrice] = useState('');
@@ -25,10 +19,6 @@ const Page = () => {
     const [description, setDescription] = useState('');
     const [disabled, setDisabled] = useState(false);
     const [error, setError] = useState('');
-    const [fileField, setFileField] = useState();
-
-    
-
 
     useEffect(() => {
         const getCategories = async () => {
@@ -61,9 +51,10 @@ const Page = () => {
                     fData.append("img", fileField.current.files[i]);
                 }
             }
-            const response = await api.addAd(fData);
+            const response = await api.updateAd(id, fData);
             if(!response.error) {
-                history.push(`/ad/${response.id}`);
+                window.location.href = '/';
+                // history.push(`/ad/${response.id}`);
             } else {
                 setError(response.error);
             }
@@ -83,8 +74,8 @@ const Page = () => {
 
     return (
         <PageContainer>
-            <PageTitle TextAlign={'center'} Margin={10 + 'px ' + 0}>
-                Postar um anuncio
+            <PageTitle TextAlign={'left'} Margin={10 + 'px ' + 0}>
+                Alterar um anuncio
             </PageTitle>
             <PageArea>
                 {error &&
@@ -177,7 +168,7 @@ const Page = () => {
                             <input 
                                 type="file"
                                 disabled={disabled}
-                                ref={e => setFileField(e.target.value)}
+                                ref={fileField}
                                 multiple
                             />
                         </div>
@@ -185,7 +176,7 @@ const Page = () => {
                     <label className="area">
                         <div className="area--title"></div>
                         <div className="area--input">
-                            <button disabled={disabled} >Adicionar Anuncio</button>
+                            <button disabled={disabled} >Alterar Anuncio</button>
                         </div>
                     </label>
                 </form>

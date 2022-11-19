@@ -78,9 +78,24 @@ const OlxAPI = {
         return json;
     },
 
+    updateUser: async (name, stateLoc, email, password) => {
+        const json = await apiFetchPost('user/me', {
+            name,
+            state: stateLoc,
+            email,
+            password
+        });
+        return json;
+    },
+
     getState: async () => {
         const json = await apiFetchGet('/states');
         return json.states;
+    },
+
+    getUser: async () => {
+        const json = await apiFetchGet('/user/me');
+        return json.user;
     },
 
     getCategories: async () => {
@@ -109,6 +124,14 @@ const OlxAPI = {
     addAd: async (fData) => {
         const json = await apiFetchFile(
             '/ad/add',
+            fData
+        );
+        return json;
+    },
+
+    updateAd: async (id,fData) => {
+        const json = await apiFetchFile(
+            '/ad/'+id,
             fData
         );
         return json;
